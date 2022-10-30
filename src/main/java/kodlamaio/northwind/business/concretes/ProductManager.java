@@ -32,5 +32,40 @@ public class ProductManager implements ProductService {
         this.productDao.save(product);
         return new SuccessResult("Ürün eklendi");
     }
+
+    @Override
+    public DataResult<Product> getByProductName(String productName) {
+        return new SuccessDataResult<Product>(this.productDao.getByProductName(productName),"Data Listelendi");
+    }
+
+    @Override
+    public DataResult<Product> getByProductNameAndCategory_CategoryId(String productName, int categoryId) {
+        return new SuccessDataResult<Product>(this.productDao.getByProductNameAndCategory_CategoryId(productName,categoryId),"Data Listelendi");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameOrCategory_CategoryId(String productName, int categoryId) {
+        return new SuccessDataResult<List<Product>>(this.productDao.getByProductNameOrCategory_CategoryId(productName,categoryId),"Data Listelendi");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByCategory_CategoryIdIn(List<Integer> categories) {
+        return new SuccessDataResult<List<Product>>(this.productDao.getByCategory_CategoryIdIn(categories),"Data Listelendi");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameContains(String productName) {
+        return new SuccessDataResult<List<Product>>(this.productDao.getByProductNameContains(productName),"Data Listelendi");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameStartsWith(String productName) {
+        return new SuccessDataResult<List<Product>>(this.productDao.getByProductNameStartsWith(productName),"Data Listelendi");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
+        return new SuccessDataResult<List<Product>>(this.productDao.getByNameAndCategory(productName,categoryId),"Data Listelendi");
+    }
 }
 //injection bagımlılıkları yonetmek icin kullanılır

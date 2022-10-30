@@ -29,4 +29,14 @@ public class ProductsController {
         return this.productService.add(product);
     }
     //requestbody anotasyonu post isleminde execute dendiğinde kalan bilgileri json dosyasına çevirip gonderir
+
+    @GetMapping("/getByProductName")
+    public DataResult<Product> getByProductName(@RequestParam String productName){  //requestparam: parametresiyle dön
+        return this.productService.getByProductName(productName);
+    }
+
+    @GetMapping("/getByProductNameAndCategoryId")
+    public DataResult<Product> getByProductNameAndCategory_CategoryId(@RequestParam String productName,@RequestParam int categoryId){
+        return this.productService.getByProductNameAndCategory_CategoryId(productName,categoryId);
+    }
 }

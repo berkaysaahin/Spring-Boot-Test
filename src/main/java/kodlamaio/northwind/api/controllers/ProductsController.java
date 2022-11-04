@@ -4,6 +4,7 @@ import kodlamaio.northwind.business.abstracts.ProductService;
 import kodlamaio.northwind.core.utilities.results.DataResult;
 import kodlamaio.northwind.core.utilities.results.Result;
 import kodlamaio.northwind.entities.concretes.Product;
+import kodlamaio.northwind.entities.concretes.ProductWithCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +20,21 @@ public class ProductsController {
         this.productService = productService;
     }
 
-    @GetMapping("/getall")
+    @GetMapping("/getAll")
     public DataResult<List<Product>> getAll(){
         return this.productService.getAll();
+    }
+
+    @GetMapping("/getAllSorted")
+    public DataResult<List<Product>> getAllSorted(){
+
+        return this.productService.getAllSorted();
+    }
+
+    @GetMapping("/getAllByPage")
+    public DataResult<List<Product>> getAll(int pageNo,int pageSize){
+
+        return this.productService.getAll(pageNo,pageSize);
     }
 
     @PostMapping("/add")
@@ -39,4 +52,16 @@ public class ProductsController {
     public DataResult<Product> getByProductNameAndCategory_CategoryId(@RequestParam String productName,@RequestParam int categoryId){
         return this.productService.getByProductNameAndCategory_CategoryId(productName,categoryId);
     }
+
+    @GetMapping("/getByProductNameContains")
+    public DataResult <List<Product>> getByProductNameContains(@RequestParam String productName){
+        return this.productService.getByProductNameContains(productName);
+    }
+
+    @GetMapping("/getProductWithCategoryDetails")
+    public DataResult <List<ProductWithCategoryDto>> getProductWithCategoryDetails(){
+        return this.productService.getProductWithCategoryDetails();
+    }
+
+
 }
